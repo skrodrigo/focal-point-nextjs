@@ -1,0 +1,359 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 24px;
+  width: 100%;
+  align-items: center;
+
+  @media (min-width: 768px) {
+    padding: 24px 56px;
+  }
+
+}
+
+.header{
+  padding: 0px 0px 24px;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 24px;
+
+  gap: 10px;
+  border-bottom: 1px solid #D7DDE9;  
+
+  @media (min-width: 768px) {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 24px;
+  }
+
+  h1{
+    font-size: 16px;
+    font-weight: 500;
+
+    @media (min-width: 768px) {
+      font-size: 24px;
+    }
+  }
+
+  span{
+    font-size: 16px;
+    font-weight: 400;
+    color: #0000008A;
+  }
+}
+
+.taskList {
+  display: flex;
+  align-items: center;
+  width: 450px;
+  max-height: 100vh;
+  overflow-y: auto; 
+  flex-direction: column;
+  padding: 32px 32px 8px 32px;
+  border-radius: 16px;
+  border: 1px solid #EAECF0;
+  margin-bottom: 24px;
+
+  h2, h3 {
+    font-size: 16px;
+    margin-bottom: 24px;
+    font-weight: 400;
+    color: #0000008A;
+  }
+
+  ul {
+    min-width: 100%;
+    list-style: none;
+    gap: 26px;
+
+    li {
+      min-width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px;
+      border: 1px dashed #D7DDE9;
+      border-radius: 8px;
+      margin-bottom: 24px;
+
+      &:hover {
+        background: #F7F9FD;
+        cursor: pointer;
+      }
+
+      div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+      }
+
+      input[type="checkbox"] {
+        appearance: none;
+        width: 24px;
+        height: 24px;
+        background-color: #FFFFFF;
+        border: 1px solid #B0BBD1;
+        border-radius: 4px;
+        cursor: pointer;
+
+        &:checked {
+          background-color: #A0DCF6;
+          border-color: #0796D3;
+          position: relative;
+
+          &::after {
+            content: '✔';
+            position: absolute;
+            color: #0796D3;
+            font-size: 12px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
+        }
+      }
+
+      span, s {
+        flex-grow: 1;
+      }
+
+      s {
+        font-size: 16px;
+        font-weight: 400;
+        color: #0000008A;
+      }
+
+      .deleteButton {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        color: #B0BBD1;
+        padding: 0 5px;
+      }
+    }
+  }
+
+  .completedTasks {
+    li {
+      background-color: #f5f5f5;
+    }
+  }
+
+  .addTaskButton {
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #1976D2;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .taskList {
+    max-width: 100%;
+    margin: 10px;
+    padding: 15px;
+
+    li {
+      padding: 8px;
+    }
+
+    .addTaskButton {
+      padding: 10px;
+    }
+  }
+}
+
+.liCompletedTask{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+
+  div {
+    display: flex;
+    width: 100%;
+
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.addTaskButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 0;
+  width: 450px;
+  max-height: 100vh;
+  overflow-y: auto; 
+  background: linear-gradient(to right, #0796D3, #53C0F0);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  
+  @media (max-width: 480px) {
+    max-width: 100%;
+    margin: 10px;
+    padding: 15px;
+  }
+
+}
+
+.trashButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #FFFFFFCC;
+  display: flex;
+  backdrop-filter: blur(2px);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background-color: white;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0px 24px 48px -12px rgba(16, 24, 40, 0.18);
+  width: 100%;
+  max-width: 450px;  // 450px no desktop
+}
+
+.modalTitle {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  color: black;
+}
+
+.inputGroup {
+  margin-bottom: 32px;
+}
+
+.inputLabel {
+  display: block;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 8px;
+  color: black;
+
+}
+
+.input {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid #D7DDE9;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 400;
+
+  &::placeholder {
+    color: #0000008F;
+  }
+}
+
+.buttonGroup {
+
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+
+}
+
+.cancelButton, .addButton, .deleteButton {
+  flex: 1;
+  padding: 16px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;  
+  border: none;
+}
+
+.cancelButton {
+  background: #E7EEFB;
+}
+
+.addButton {
+  background: linear-gradient(to right, #0796D3, #53C0F0);
+  font-weight: 500;
+  color: white;
+}
+
+.deleteButton {
+  color: white;
+  background: linear-gradient(to right, #D30707, #F05353);
+}
+
+.modalText {
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 32px;
+  color: #0000008A;
+}
+
+@media (max-width: 480px) {
+  
+    .modalContent {
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    border-radius: 0px;
+  }
+
+
+  .buttonGroup {
+    flex-direction: column;
+  }
+
+  .cancelButton, .addButton, .deleteButton {
+    width: 100%;
+  }
+
+  .modalText {
+    margin-bottom: 24px;
+  }
+
+  .addButton {
+    order: -1; 
+  }
+
+  .deleteButton {
+    order: -1; 
+  }
+}
+
